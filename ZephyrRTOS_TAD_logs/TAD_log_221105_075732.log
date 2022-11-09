@@ -1,0 +1,20 @@
+"Task Aware Debugger for GDB" version 11.6.1 (202207200623)
+(c) 2016-2022 NXP Semiconductors, Inc.
+==================================
+07:25:56.648 INFO: [ZephyrRTOS] D:\Npx\Labs_Diplomado_IoT\K32L2B31A_Lab_Diplomado_IoT\K32L2B31A_Lab_Diplomado_IoT\Debug\.config file could not be read
+07:25:56.648 INFO: [TadModel] DSF session ID 4 has started.
+07:26:03.995 INFO: [TadState] TAD state changed: DEBUG_STARTED -> DEBUG_INIT_0 (RESUMED, USER_REQUEST)
+07:26:04.20 INFO: [TadState] TAD state changed: DEBUG_INIT_0 -> DEBUG_INIT_1 (SUSPENDED, SIGNAL)
+07:26:04.752 INFO: [TadState] TAD state changed: DEBUG_INIT_1 -> DEBUG_SUSPENDED (RESUMED, USER_REQUEST)
+07:26:04.827 INFO: [TadState] TAD state changed: DEBUG_SUSPENDED -> DEBUG_SUSPENDED (SUSPENDED, BREAKPOINT)
+07:26:11.43 INFO: [TadState] TAD state changed: DEBUG_SUSPENDED -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+07:26:28.111 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, SIGNAL)
+07:26:29.446 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+07:26:29.521 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, BREAKPOINT)
+07:26:30.952 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+07:27:02.473 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, SIGNAL)
+07:27:03.773 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+07:27:03.849 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, BREAKPOINT)
+07:27:05.688 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+07:57:31.517 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, SIGNAL)
+07:57:32.783 INFO: [TadModel] DSF session ID 4 has ended.
