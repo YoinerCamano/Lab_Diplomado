@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
-
+#MCUXpresso
+K32L2B31A_Lab_Diplomado_IoT/K32L2B31A_Lab_Diplomado_IoT/Debug/
+K32L2B31A_Lab_Diplomado_IoT/K32L2B31A_Lab_Diplomado_IoT/Release/
 # Object files
 *.o
 *.ko
@@ -50,3 +52,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/.metadata/
