@@ -95,16 +95,18 @@ pin_labels:
  * END ****************************************************************************************************************/
 void BOARD_InitBootPins(void)
 {
+    BOARD_InitPins();
+    BOARD_InitLEDsPins();
     BOARD_InitDEBUG_UARTPins();
+    BOARD_InitSensorLuz();
 }
 
 /* clang-format off */
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitPins:
-- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
-- pin_list:
-  - {pin_num: '11', peripheral: ADC0, signal: 'SE, 3', pin_signal: ADC0_DP3/ADC0_SE3/PTE22/TPM2_CH0/UART2_TX/FXIO0_D6}
+- options: {callFromInitBoot: 'true', prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- pin_list: []
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
@@ -117,18 +119,13 @@ BOARD_InitPins:
  * END ****************************************************************************************************************/
 void BOARD_InitPins(void)
 {
-    /* Port E Clock Gate Control: Clock enabled */
-    CLOCK_EnableClock(kCLOCK_PortE);
-
-    /* PORTE22 (pin 11) is configured as ADC0_SE3 */
-    PORT_SetPinMux(PORTE, 22U, kPORT_PinDisabledOrAnalog);
 }
 
 /* clang-format off */
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitLCDPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '41', peripheral: LCD, signal: 'P, 14', pin_signal: LCD_P14/PTB18/TPM2_CH0, slew_rate: slow, pull_select: up, pull_enable: disable}
   - {pin_num: '42', peripheral: LCD, signal: 'P, 15', pin_signal: LCD_P15/PTB19/TPM2_CH1, slew_rate: slow, pull_select: up, pull_enable: disable}
@@ -390,7 +387,7 @@ void BOARD_InitLCDPins(void)
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitBUTTONSPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '26', peripheral: GPIOA, signal: 'GPIO, 4', pin_signal: PTA4/I2C1_SDA/TPM0_CH1/NMI_b, direction: INPUT, slew_rate: fast, pull_select: up, pull_enable: enable,
     passive_filter: disable}
@@ -458,7 +455,7 @@ void BOARD_InitBUTTONSPins(void)
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitLEDsPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'true', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '19', peripheral: GPIOE, signal: 'GPIO, 31', pin_signal: PTE31/TPM0_CH4, direction: OUTPUT, gpio_init_state: 'true', slew_rate: slow, pull_select: down,
     pull_enable: disable}
@@ -586,7 +583,7 @@ void BOARD_InitDEBUG_UARTPins(void)
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitUSBPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '5', peripheral: USB0, signal: DP, pin_signal: USB0_DP}
   - {pin_num: '6', peripheral: USB0, signal: DM, pin_signal: USB0_DM}
@@ -652,7 +649,7 @@ void BOARD_InitUSBPins(void)
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitACCEL_I2CPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '20', peripheral: I2C0, signal: SCL, pin_signal: PTE24/TPM0_CH0/I2C0_SCL, slew_rate: fast, pull_select: up, pull_enable: enable}
   - {pin_num: '21', peripheral: I2C0, signal: SDA, pin_signal: PTE25/TPM0_CH1/I2C0_SDA, slew_rate: fast, pull_select: up, pull_enable: enable}
@@ -760,7 +757,7 @@ void BOARD_InitACCEL_I2CPins(void)
 /*
  * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
 BOARD_InitOSCPins:
-- options: {prefix: BOARD_, coreID: core0, enableClock: 'true'}
+- options: {callFromInitBoot: 'false', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
   - {pin_num: '32', peripheral: OSC0, signal: EXTAL0, pin_signal: EXTAL0/PTA18/LPUART1_RX/TPM_CLKIN0, slew_rate: no_init, pull_select: no_init, pull_enable: no_init}
   - {pin_num: '33', peripheral: OSC0, signal: XTAL0, pin_signal: XTAL0/PTA19/LPUART1_TX/TPM_CLKIN1/LPTMR0_ALT1, slew_rate: no_init, pull_select: no_init, pull_enable: no_init}
@@ -784,6 +781,32 @@ void BOARD_InitOSCPins(void)
 
     /* PORTA19 (pin 33) is configured as XTAL0 */
     PORT_SetPinMux(BOARD_XTAL_32KHZ_PORT, BOARD_XTAL_32KHZ_PIN, kPORT_PinDisabledOrAnalog);
+}
+
+/* clang-format off */
+/*
+ * TEXT BELOW IS USED AS SETTING FOR TOOLS *************************************
+BOARD_InitSensorLuz:
+- options: {callFromInitBoot: 'true', coreID: core0, enableClock: 'true'}
+- pin_list:
+  - {pin_num: '11', peripheral: ADC0, signal: 'DP, 3', pin_signal: ADC0_DP3/ADC0_SE3/PTE22/TPM2_CH0/UART2_TX/FXIO0_D6}
+ * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
+ */
+/* clang-format on */
+
+/* FUNCTION ************************************************************************************************************
+ *
+ * Function Name : BOARD_InitSensorLuz
+ * Description   : Configures pin routing and optionally pin electrical features.
+ *
+ * END ****************************************************************************************************************/
+void BOARD_InitSensorLuz(void)
+{
+    /* Port E Clock Gate Control: Clock enabled */
+    CLOCK_EnableClock(kCLOCK_PortE);
+
+    /* PORTE22 (pin 11) is configured as ADC0_DP3 */
+    PORT_SetPinMux(PORTE, 22U, kPORT_PinDisabledOrAnalog);
 }
 /***********************************************************************************************************************
  * EOF

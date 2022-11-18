@@ -56,3 +56,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /.metadata/
+
+FreeRTOS_TAD_logs/
